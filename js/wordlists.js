@@ -1,4 +1,4 @@
-const wordlists = {
+export const wordlists = {
     "Around The House":[
         "A CANDLE IN THE WINDOW",
 		"A CANVAS BACKPACK",

@@ -15,14 +15,6 @@ function repopulateNumWordsDropdown() {
     var numWordsDrowdownElement = document.getElementById("solver-num-words")
     var inputSelectedCategory = document.getElementById("solver-category-select").value
     
-    if (inputSelectedCategory == "null") {
-        numWordsDrowdownElement.disabled = true;
-        populateDropdown(numWordsDrowdownElement, [0])
-        return;
-    }
-
-    numWordsDrowdownElement.disabled = false;
-
     var uniqueWordLengths = {}
 
     for (let word of wordlists[inputSelectedCategory]) {
@@ -30,8 +22,6 @@ function repopulateNumWordsDropdown() {
     }
 
     populateDropdown(numWordsDrowdownElement, Object.keys(uniqueWordLengths))
-
-    //console.log(uniqueWordLengths)
 }
 
 

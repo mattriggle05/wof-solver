@@ -34,15 +34,39 @@ function repopulateNumWordsDropdown() {
     //console.log(uniqueWordLengths)
 }
 
-for (let inputElement of document.getElementsByClassName("solver-input")) { 
-    inputElement.addEventListener('change', () => {});
+
+function createWordLengthsInputs() { 
+    var wordLengthInputsDiv = document.getElementById("solver-word-length-inputs")
+    wordLengthInputsDiv.innerHTML = ""
+
+    var numWordsDrowdownElement = document.getElementById("solver-num-words")
+    if (numWordsDrowdownElement.disabled) return;
+
+    for (let i = 0; i < numWordsDrowdownElement.value; i++) { 
+        var inputElement = document.createElement("input");
+        inputElement.type = "number"
+        inputElement.id = "word-length-input-" + (i + 1)
+        inputElement.classList.add("solver-input")
+        inputElement.classList.add("solver-one-number-box")
+        wordLengthInputsDiv.appendChild(inputElement);
+    }
 }
+
+
+
 
 document.getElementById("solver-category-select").addEventListener('change', () => {
     repopulateNumWordsDropdown()
+    createWordLengthsInputs()
 });
 
-const categories = Object.keys(wordlists)
-let select = document.getElementById("solver-category-select");
-populateDropdown(select, categories)
+document.getElementById("solver-num-words").addEventListener('change', () => {
+    createWordLengthsInputs()
+});
+
+
+
+
+populateDropdown(document.getElementById("solver-category-select"), Object.keys(wordlists))
 repopulateNumWordsDropdown()
+createWordLengthsInputs()
